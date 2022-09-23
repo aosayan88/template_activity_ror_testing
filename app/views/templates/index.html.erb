@@ -1,0 +1,52 @@
+<div id="container">
+    <%= render :partial => "templates/partials/template_header_partial" %>
+    <div id="content_container">
+        <%= render :partial => "templates/partials/template_sidebar_partial" %>
+        <div id="content_section">
+            <div id="create_template_container">
+                <div id="create_template_header">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb_item"><a href="#">Templates</a></li>
+                        <li class="breadcrumb_item template_header_title">Untitled Template</li>
+                    </ul>
+                </div>
+                <form action="/process_create_template" id="create_template_form" method="post">
+                    <div id="create_template_body">
+                        <p>Create multiple choice, short answer, paragraph, and video questions to assess your candidates</p>
+                        <input class="form_template_textfield" type="text" name="template_title" id="template_title" value="Untitled Template" autocomplete="off">
+                        <input class="form_template_textfield" type="text" name="template_description" id="template_description" placeholder="Template Description (Optional)">
+                        <ul class="template_questions">
+                            <%= render :partial => "templates/partials/template_question_partial", :locals => {:questions => @questions } %>
+                        </ul>
+                    </div>
+                    <div id="fixed_bottom">
+                        <button type="button" class="add_question_btn">Add Question</button>
+                        <div class="fixed_btn_grp">
+                            <button type="button" class="preview_btn">Preview</button>
+                            <button type="submit" class="save_btn">Save</button>
+                            <button type="button" class="send_btn">Send</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- For Cloning of Question -->
+    <%= render :partial => "templates/partials/template_default_question_partial" %>
+    <!-- Delete Modal -->
+    <%= render :partial => "templates/modals/delete_question_modal" %>
+    <!-- Preview Modal -->
+    <%= render :partial => "templates/modals/template_preview_modal" %>
+</div>
+
+<form action="/process_add_question" id="add_question_form" method="post">
+</form>
+
+<form action="/process_duplicate_question" id="duplicate_question_form" method="post">
+    <input type="hidden" id="duplicate_question_id" name="question_id" value="">
+</form>
+
+<form action="/process_template_preview" id="template_preview_form" method="post">
+    <input type="hidden" id="form_template_title" name="template_title">
+    <input type="hidden" id="form_template_description" name="template_description">
+</form>

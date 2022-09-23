@@ -1,0 +1,1021 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+scrollbar-width: none;
+scrollbar-color: #dbdbdb #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+background-color: #dbdbdb;
+border-radius: 10px;
+border: 3px solid #ffffff;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    overflow: hidden;
+}
+
+ol,
+ul {
+    list-style-type: none;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+#container {
+
+    header {
+        align-items: center;
+        border-bottom: 1px solid #c8d9fb;
+        display: flex;
+        padding: 13px 20px 13px 30px;
+
+        .datacompass_logo {
+            display: inline-block;
+        }
+
+        #header_search_form {
+            align-items: center;
+            border: 1px solid #c8d9fb;
+            border-radius: 5px;
+            display: flex;
+            height: 30px;
+            margin-left: 55px;
+            width: 340px;
+
+            .search_icon {
+                background: image-url("search_icon.svg") no-repeat center center / contain;
+                content: '';
+                height: 13px;
+                margin-left: 10px;
+                margin-right: 5px;
+                vertical-align: middle;
+                width: 13px;
+            }
+
+            .header_search_field {
+                border: none;
+                color: #a3afc9;
+                font-weight: 400;
+                font: 14px/18px "Cairo";
+                margin: 5px 0;
+                outline: none;
+                width: 320px;
+
+                &::placeholder {
+                    color: #a3afc9;
+                }
+            }
+        }
+
+        .header_profile {
+            align-items: center;
+            display: flex;
+            margin: 0px 30px 0px auto;
+
+            img {
+                border-radius: 50%;
+                height: 32px;
+                margin-right: 12px;
+                width: 32px;
+            }
+
+            .profile_name {
+                color: #6e7b92;
+                font: 16px/20px "Cairo";
+                font-weight: 500;
+
+                &::after {
+                    background: image-url("arrow_down.svg") no-repeat center center / contain;
+                    content: '';
+                    display: inline-block;
+                    height: 10px;
+                    margin-left: 10px;
+                    width: 10.5px;
+                }
+            }
+        }
+    }
+
+    #content_container {
+        display: flex;
+        min-height: 100vh;
+
+        #sidebar {
+            background-color: #25324b;
+            min-height: 100%;
+            width: 208px;
+
+            button {
+                align-items: center;
+                background-color: transparent;
+                border: none;
+                border-bottom: 1px solid #344669;
+                display: flex;
+                height: 60px;
+                padding: 20px;
+                width: 100%;
+
+                img {
+                    margin-right: 10px;
+                }
+
+                &::after {
+                    background: image-url("arrow_down.svg") no-repeat center center / contain;
+                    content: '';
+                    display: inline-block;
+                    height: 10px;
+                    margin-left: 40px;
+                    width: 10.5px;
+                }
+
+                .company_name {
+                    color: #bbcef3;
+                    font: 14px/16px "Cairo";
+                    font-weight: 500;
+                    width: 120px;
+                }
+            }
+
+            #sidebar_links {
+                padding: 25px 20px;
+
+                .sidebar_item {
+                    
+                    a {
+                        align-items: center;
+                        color: #bbcef3;
+                        display: flex;
+                        font: 14px/18px "Cairo";
+                        margin-bottom: 5px;
+                    }
+
+                    .sidebar_link {
+                        background-color: #1d2b45;
+                        border-radius: 5px;
+                        height: 40px;
+                        margin-right: 12px;
+                        width: 40px;
+
+                        .dashboard_icon {
+                            background: image-url("sidebar_sprites.png") -46px -10px;
+                            display: inline-block;
+                            height: 12px;
+                            margin: 15px;
+                            width: 12px;
+                        }
+
+                        .templates_icon {
+                            background: image-url("sidebar_sprites.png") -10px -42px;
+                            display: inline-block;
+                            height: 12px;
+                            margin: 15px;
+                            width: 12px;
+                        }
+
+                        .candidates_icon {
+                            background: image-url("sidebar_sprites.png") -10px -10px;
+                            display: inline-block;
+                            height: 12px;
+                            margin: 13px;
+                            width: 16px;
+                        }
+                    }                
+                }
+
+                .active {
+                    background-color: #2d4063;
+                    border-radius: 5px;
+                }
+
+                
+            }
+        }
+    
+        #content_section {
+            background-color: #e7eeff;
+            padding: 30px;
+            width: 100%;
+
+            #create_template_container {
+                background-color: #fff;
+                border: 1px solid #c8d9fb;
+                border-radius: 10px;
+                padding-left: 40px;
+                width: 100%;
+
+                #create_template_header {
+                    margin: 20px 0;
+
+                    .breadcrumb {
+                        background-color: transparent !important;
+                        align-items: center;
+                        display: flex;
+
+                        a {
+                            color: #32a5cd;
+                        }
+
+                        .breadcrumb_item {
+                            font: 16px/20px "Cairo";
+                            font-weight: 600;
+                        }
+
+                        .template_header_title {
+                            &::before {
+                                background: image-url("css_sprites.png") -107px -147px;
+                                content: '';
+                                display: inline-block;
+                                height: 7px;
+                                margin: 0 10px;
+                                transform: rotate(-90deg);
+                                width: 12px;
+                            }
+                        }
+                    }
+                }
+
+                #create_template_body {
+                    margin: 30px 0;
+                    max-height: 60vh;
+                    overflow-y: auto;
+                    width: 100%;
+
+                    > p {
+                        color: #a3afc9;
+                        font: 14px/20px "Cairo";
+                        font-weight: 400;
+                    }
+
+                    .form_template_textfield {
+                        border: none;
+                        border-bottom: 1px solid #d4e1fa;
+                        display: block;
+                        margin: 30px 0;
+                        outline: none;
+                        padding-bottom: 6px;
+                        width: 770px;
+                    }
+
+                    #template_title {
+                        font: 16px/20px "Cairo";
+                        font-weight: 600;
+                    }
+
+                    #template_description {
+                        font: 14px/18px "Cairo";
+                        font-weight: 400;
+                        margin-top: 35px;
+                    }
+
+                    .template_questions {
+                        width: 770px;
+
+                        .template_question {
+                            background-color: #fbfcff;
+                            border: 1px solid #d4e1fa;
+                            border-radius: 10px;
+                            padding: 0 26px;
+                            width: 100%;
+                            margin-bottom: 40px;
+    
+                            .grip_icon {
+                                background: image-url("css_sprites.png") -170px -42px;
+                                height: 10px;
+                                margin: auto;
+                                margin-top: 14px;
+                                text-align: center;
+                                width: 19px;
+                                cursor: move;
+                            }
+    
+                            .question_header {
+                                align-items: center;
+                                display: flex;
+    
+                                .template_question_type {
+                                    border: 1px solid #d4e1fa;
+                                    border-radius: 5px;
+                                    height: 40px;
+                                    margin: 14px 0;
+                                    width: 180px;
+                                }
+    
+                                .question_type_tooltip_icon {
+                                    background: image-url("css_sprites.png") -87px -106px;
+                                    height: 18px;
+                                    margin-left: 10px;
+                                    width: 18px;
+                                }
+    
+                                .question_header_actions {
+                                    margin-left: auto;
+    
+                                    .duplicate_btn_icon {
+                                        background: image-url("css_sprites.png") -10px -106px;
+                                        border: none;
+                                        height: 21px;
+                                        margin-right: 26px;
+                                        width: 18px;
+                                    }
+    
+                                    .delete_btn_icon {
+                                        background: image-url("css_sprites.png") -125px -106px;
+                                        border: none;
+                                        height: 18px;
+                                        width: 17px;
+                                    }
+                                }
+                            }
+    
+                            .question_title {
+                                align-items: center;
+                                border-bottom: 1px solid #d4e1fa;
+                                display: flex;
+                                justify-content: space-between;
+                                margin: 20px 0 18px;
+                                padding-bottom: 5px;
+    
+                                .question_title_field {
+                                    background-color: transparent;
+                                    border: none;
+                                    font: 14px/19px "Cairo";
+                                    font-weight: 600;
+                                    outline: none;
+                                    width: 700px;
+                                }
+    
+                                .question_image {
+                                    background: image-url("css_sprites.png") -60px -56px;
+                                    border: none;
+                                    height: 18px;
+                                    width: 22px;
+                                }
+                            }
+    
+                            .option_cirle {
+                                border: 2px solid #bfc7d8;
+                                border-radius: 50%;
+                                height: 18px;
+                                width: 18px;
+                            }
+    
+                            .question_option_item {
+                                align-items: center;
+                                display: flex;
+                                margin-bottom: 16px;
+    
+                                .question_option_field {
+                                    background-color: transparent;
+                                    border: none;
+                                    color: #25324b;
+                                    font: 14px/18px "Cairo";
+                                    font-weight: 400;
+                                    margin-left: 12px;
+                                    outline: none;
+                                    width: 700px;
+                                }
+
+                                .question_option_delete_btn {
+                                    background: image-url("x_icon.svg") no-repeat center center / contain;
+                                    border: none;
+                                    height: 18px;
+                                    margin-left: auto;
+                                    width: 22px;
+                                }
+                            }
+    
+                            .short_answer_option,
+                            .long_answer_option {
+                                background-color: transparent;
+                                border: none;
+                                border-bottom: 1px solid #d4e1fa;
+                                display: block;
+                                font-weight: 400;
+                                font: 14px/19px "Cairo";
+                                margin: 32px 0 38px;
+                                outline: none;
+                                padding-bottom: 6px;
+                                width: 100%;
+                            }
+    
+                            .question_option_action {
+                                align-items: center;
+                                display: flex;
+                                margin-bottom: 38px;
+    
+                                .add_question_option {
+                                    background-color: transparent;
+                                    border: none;
+                                    color: #626c7f;
+                                    font: 14px/18px "Cairo";
+                                    font-weight: 400;
+                                    margin-left: 10px;
+    
+                                    span {
+                                        text-decoration: underline;
+                                    }
+                                }
+                            }
+                        }
+                    }            
+                }
+
+                #fixed_bottom {
+                    margin: 30px 0 20px;
+                    width: 770px;
+
+                    .add_question_btn {
+                        background-color: #fff;
+                        border: 1px solid #0faf93;
+                        border-radius: 5px;
+                        color: #0faf93;
+                        font: 16px/20px "Cairo";
+                        font-weight: 600;
+                        height: 55px;
+                        width: 100%;
+
+                        &::before {
+                            background: image-url("css_sprites.png") -170px -72px;
+                            border: none;
+                            content: '';
+                            display: inline-block;
+                            height: 14px;
+                            margin-right: 16px;
+                            width: 14px;
+                        }
+                    }
+
+                    .fixed_btn_grp {
+                        align-items: center;
+                        background-color: #f8faff;
+                        border: 1px solid #d4e1fa;
+                        border-radius: 5px;
+                        display: flex;
+                        height: 70px;
+                        justify-content: space-between;
+                        margin-top: 20px;
+                        padding: 0 26px 0 18px;
+
+                        .preview_btn {
+                            background-color: transparent;
+                            border:none;
+                            color: #a3afc9;
+                            font: 16px/20px "Cairo";
+                            font-weight: 600;
+
+                            &::before {
+                                background: image-url("css_sprites.png") -170px -10px;
+                                border: none;
+                                content: '';
+                                display: inline-block;
+                                height: 12px;
+                                margin-right: 15px;
+                                width: 21px;
+                            }
+                        }
+
+                        .save_btn,
+                        .send_btn {
+                            background-color: #0faf93;
+                            border: none;
+                            border-radius: 5px;
+                            color: #fff;
+                            font: 16px/20px "Cairo";
+                            font-weight: 600;
+                            height: 40px;
+                            width: 178px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+    .delete_modal {
+        padding: 50px !important;
+
+        .modal_delete_icon_container {
+            background: #eaf2ff;
+            border: none;
+            border-radius: 50%;
+            height: 56px;
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+            width: 56px;
+    
+            .modal_delete_icon {
+                background: image-url("css_sprites.png") -125px -106px;
+                border: none;
+                display: inline-block;
+                height: 23px;
+                width: 21px;
+            }
+        }
+
+        .delete_modal_confirm_text {
+            color: #25324b;
+            font: 16px/24px "Cairo";
+            font-weight: 700;
+            margin: 22px auto 14px;
+            text-align: center;
+            width: 200px;
+        }
+
+        p + p {
+            color: #6e7b92;
+            font: 14px/18px "Cairo";
+            font-weight: 400;
+            margin: 0 auto 35px;
+            text-align: center;
+            width: 200px;
+        }
+
+        .delete_modal_btn_group {
+            margin: auto;
+            text-align: center;
+
+            button {
+                font-weight: 400;
+                font: 14px/18px "Cairo";
+                height: 40px;
+                margin: 2px;
+                width: 135px;
+            }
+
+            .delete_modal_cancel_btn {
+                background-color: #eaf2ff;
+                border: 1px solid #c8d9fb;
+                border-radius: 5px;
+                color: #6e7b92;
+            }
+
+            .delete_modal_delete_btn {
+                background-color: #ff7272;
+                border: none;
+                border-radius: 5px;
+                color: #fff;
+            }
+        }
+    }
+
+    .preview_modal {
+        height: 850px !important;
+        margin: 0px !important;
+        padding: 0px !important;
+
+        .preview_modal_header {
+
+            .preview_close_btn {
+                border: 1px solid #a3afc9;
+                background-color: #f5f9ff;
+                border-radius: 50%;
+                height: 23px;
+                position: absolute;
+                right: -10px;
+                top: -10px;
+                width: 23px;
+                padding: 5px;
+    
+                .preview_close_icon {
+                    background: image-url("preview_close_icon.svg") no-repeat center center / contain;
+                    display: inline-block;
+                    width: 10px;
+                    height: 10px;
+                    margin-bottom: 8px;
+                }
+            }
+        }
+
+        .preview_modal_content {
+            .preview_content_header {
+                align-items: center;
+                background-color: #f5f9ff;
+                border-bottom: 1px solid #d4e1fa;
+                border-top-left-radius: 10px;
+                display: flex;
+                height: 65px;
+                justify-content: space-between;
+                padding: 0 85px;
+    
+                p {
+                    font: 18px/22px "Cairo";
+                    font-weight: 600;
+                    color: #bfc7d8;
+                    margin-top: 18px;
+    
+                    .preview_template_title {
+                        color: #25324b;
+                    }
+                }
+    
+                .prev_btn,
+                .next_btn {
+                    height: 42px;
+                    width: 42px;
+                    border: 1px solid #a3afc9;
+                    border-radius: 5px;
+                    background-color: #fff;
+                    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                }
+    
+                .prev_btn_icon {
+                    background: image-url("next_icon.svg") no-repeat center center / contain;
+                    width: 15px;
+                    height: 10px;
+                    display: inline-block;
+                    transform: rotate(180deg);
+                }
+    
+                .next_btn_icon {
+                    background: image-url("next_icon.svg") no-repeat center center / contain;
+                    width: 15px;
+                    height: 10px;
+                    display: inline-block;
+                }
+
+                .prev_btn:disabled,
+                .next_btn:disabled {
+                    opacity: 0.3;
+                }
+            }
+
+            .preview_content_carousel {
+
+                .carousel-inner {
+                    .carousel-item:first-child {
+                        margin: 100px 350px;
+                        text-align: center;
+                        width: 35%;
+
+                        .carousel_template_title {
+                            color: #25324b;
+                            font: 27px/32px "Cairo";
+                            font-weight: 700;
+                        }
+    
+                        .carousel_template_description {
+                            color: #6e7b92;
+                            font: 18px/25px "Cairo";
+                            font-weight: 400;
+                        }
+    
+                        .preview_get_started_btn {
+                            background-color: #0faf93;
+                            border: none;
+                            border-radius: 5px;
+                            color: #fff;
+                            height: 45px;
+                            width: 100%;
+                        }
+                    }
+
+                    .preview_question_container {
+                        position: relative;
+
+                        .preview_question_title_container {
+                            align-items: center;
+                            border-bottom: 1px solid #d4e1fa;
+                            display: flex;
+                            height: 100px;
+                            padding: 0 50px;
+    
+                            .question_type_icon_container {
+                                width: 44px;
+                                height: 35px;
+                                border: 1px solid #d4e1fa;
+                                border-radius: 5px;
+                                background-color: #f5f9ff;
+    
+                                .multiple_choice_icon {
+                                    background: image-url("multiple_choice_icon.svg") no-repeat center center / contain;
+                                    display: inline-block;
+                                    height: 21px;
+                                    margin: 5px 10px;
+                                    width: 21px;
+                                }
+
+                                .short_answer_icon {
+                                    background: image-url("short_answer_icon.svg") no-repeat center center / contain;
+                                    display: inline-block;
+                                    height: 21px;
+                                    margin: 5px 10px;
+                                    width: 21px;
+                                }
+
+                                .paragraph_icon {
+                                    background: image-url("paragraph_icon.svg") no-repeat center center / contain;
+                                    display: inline-block;
+                                    height: 21px;
+                                    margin: 5px 10px;
+                                    width: 21px;
+                                }
+                            }
+    
+                            .preview_question_title {
+                                font: 18px/22px "Cairo";
+                                font-weight: 600;
+                                margin-left: 15px;
+                                margin-top: 10px;
+                            }
+                        }
+    
+                        .preview_question_type_container {
+                            background-color: #f5f9ff;
+                            height: 684px;
+                            padding: 30px 50px;
+
+                            .preview_question_option_container {
+                                width: 100%;
+
+                                span {
+                                    font: 14px/18px "Cairo";
+                                    font-weight: 400;
+                                }
+
+                                .radio_option {
+                                    display: none;
+                                    &:not(:disabled) ~ label {
+                                        cursor: pointer;
+                                    }
+                                }
+
+                                .question_option_label {
+                                    align-items: center;
+                                    border: 1px solid #d4e1fa;
+                                    border-radius: 5px;
+                                    display: flex;
+                                    height: 40px;
+                                    margin-bottom: 10px;
+                                    width: 100%;
+
+                                    .question_option_number {
+                                        border-right: 1px solid #d4e1fa;
+                                        color: #0faf93;
+                                        height: 100%;
+                                        padding: 10px 15px;
+                                        width: 40px;
+                                    }
+
+                                    .question_option_text {
+                                        margin-left: 15px;
+                                    }
+                                }
+
+                                .radio_option:checked {
+                                    + .question_option_label {
+                                        background-color: #ecfffc;
+                                        border: 1px solid #0faf93;
+                                        color: #0faf93;
+                                        font-weight: 700;
+
+                                        .question_option_number {
+                                            color: #fff;
+                                            background-color: #0faf93;
+                                        }
+                                    }
+                                }
+                            }
+
+                            .question_answer_text {
+                                border: none;
+                                border-bottom: 1px solid #d4e1fa;
+                                background-color: transparent;
+                                display: block;
+                                font-weight: 400;
+                                font: 18px/22px "Cairo";
+                                margin: 32px 0 38px;
+                                outline: none;
+                                padding-bottom: 6px;
+                                width: 100%;
+                            }
+
+                            .question_answer_text:focus {
+                                border-bottom: 1px solid #0faf93;
+                            }
+
+                            .preview_next_btn {
+                                background-color: #0faf93;
+                                border: none;
+                                border-radius: 5px;
+                                color: #fff;
+                                height: 40px;
+                                width: 100px;
+                            }
+
+                            .preview_next_btn:disabled {
+                                background-color: #97a4bf;
+                            }
+                        }
+    
+                        .preview_footer {
+                            background-color: #fff;
+                            border-top: 1px solid #d4e1fa;
+                            bottom: 5px;
+                            height: 50px;
+                            padding: 15px;
+                            position: absolute;
+                            text-align: center;
+                            width: 100%;
+                        }
+                    }
+                    
+                    .progress_bar_container {
+                        bottom: 0;
+                        height: 7px;
+                        position: absolute;
+                        width: 100%;
+
+                        .progress_bar {
+                            background-color: #0faf93;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .default_question {
+        background-color: #fbfcff;
+        border: 1px solid #d4e1fa;
+        border-radius: 10px;
+        margin-bottom: 40px;
+        padding: 0 26px;
+        width: 100%;
+
+        .grip_icon {
+            background: image-url("css_sprites.png") -170px -42px;
+            height: 10px;
+            margin: auto;
+            margin-top: 14px;
+            text-align: center;
+            width: 19px;
+        }
+
+        .question_header {
+            align-items: center;
+            display: flex;
+
+            #template_question_type {
+                border: 1px solid #d4e1fa;
+                height: 40px;
+                margin: 14px 0;
+                width: 180px;
+            }
+
+            .question_type_tooltip_icon {
+                background: image-url("css_sprites.png") -87px -106px;
+                height: 18px;
+                margin-left: 10px;
+                width: 18px;
+            }
+
+            .question_header_actions {
+                margin-left: auto;
+
+                .duplicate_btn_icon {
+                    background: image-url("css_sprites.png") -10px -106px;
+                    border: none;
+                    height: 21px;
+                    margin-right: 26px;
+                    width: 18px;
+                }
+
+                .delete_btn_icon {
+                    background: image-url("css_sprites.png") -125px -106px;
+                    border: none;
+                    height: 18px;
+                    width: 17px;
+                }
+            }
+        }
+
+        .question_title {
+            align-items: center;
+            border-bottom: 1px solid #d4e1fa;
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0 18px;
+            padding-bottom: 5px;
+
+            .question_title_field {
+                border: none;
+                font: 14px/19px "Cairo";
+                font-weight: 600;
+                outline: none;
+            }
+
+            .question_image {
+                background: image-url("css_sprites.png") -60px -56px;
+                border: none;
+                height: 18px;
+                width: 22px;
+            }
+        }
+
+        .option_cirle {
+            border: 2px solid #bfc7d8;
+            border-radius: 50%;
+            height: 18px;
+            width: 18px;
+        }
+
+        .question_option_item {
+            align-items: center;
+            display: flex;
+            margin-bottom: 16px;
+
+            .question_option_field {
+                border: none;
+                color: #25324b;
+                font: 14px/18px "Cairo";
+                font-weight: 400;
+                margin-left: 12px;
+                outline: none;
+            }
+        }
+
+        .short_answer_option,
+        .long_answer_option {
+            border: none;
+            border-bottom: 1px solid #d4e1fa;
+            display: block;
+            font-weight: 400;
+            font: 14px/19px "Cairo";
+            margin: 32px 0 38px;
+            outline: none;
+            padding-bottom: 6px;
+            width: 100%;
+        }
+
+        .question_option_action {
+            align-items: center;
+            display: flex;
+            margin-bottom: 38px;
+
+            .add_question_option {
+                background-color: #fff;
+                border: none;
+                color: #626c7f;
+                font: 14px/18px "Cairo";
+                font-weight: 400;
+                margin-left: 10px;
+
+                span {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
+
+.tooltip.bs-tooltip-right,
+.arrow {
+    &::before {
+        border-right-color: #25324b !important;
+    }
+}
+
+.tooltip-inner {
+    background-color: #25324b !important;
+    font: 12px/18px "Cairo";
+    font-weight: 500;
+    height: 50px;
+    max-width: 243px;
+    padding: 10px 5px;
+    text-align: start !important;
+}
+
+.sortable_placeholder {
+    background-color: #e7eeff;
+    border: 1px solid #d4e1fa;
+    border-radius: 10px;
+    height: 233px;
+    margin-bottom: 40px;
+    opacity: .6;
+}

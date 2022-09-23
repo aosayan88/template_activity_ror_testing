@@ -1,0 +1,61 @@
+<div class="preview_content_header">
+    <p>Preview: <span class="preview_template_title"><%= template['template_title'] %></span></p>
+    <div class="carousel_group_btn">
+        <!-- <a href="#preview_content_carousel" role="button" data-slide="prev">
+        </a> -->
+        <button type="button" class="prev_btn" disabled="disabled"><span class="prev_btn_icon"></span></button>
+        <button class="next_btn"><span class="next_btn_icon"></span></button>
+        <!-- <a href="#preview_content_carousel" role="button">
+        </a> -->
+    </div>
+</div>
+<div id="preview_content_carousel" class="carousel slide preview_content_carousel" data-ride="carousel" data-interval="false">
+    <div class="carousel-inner">
+        <div class="carousel-item active" id="carousel_item_id_0">
+            <h3 class="carousel_template_title"><%= template['template_title'] %></h3>
+            <p class="carousel_template_description"><%= template['template_description'] %></p>
+            <button type="button" class="preview_get_started_btn">Get Started</button>
+        </div>
+        <% questions.each_with_index do |question, question_index| %>
+        <div class="carousel-item preview_question_container" id="carousel_item_id_<%= question_index + 1 %>">
+            <div class="preview_question_title_container">
+                <div class="question_type_icon_container">
+                <% if question["question_type"] == "0" %>
+                    <span class="multiple_choice_icon"></span>
+                <% elsif question["question_type"] == "1" %>
+                    <span class="short_answer_icon"></span>
+                <% else %>
+                    <span class="paragraph_icon"></span>
+                <% end %>
+                </div>
+                <p class="preview_question_title"><%= question['question_title'] %></p>
+            </div>
+            <div class="preview_question_type_container">
+            <% if question["question_options"].present? %>
+                <% question["question_options"].each_with_index do | question_option, question_option_index | %>
+                <div class="preview_question_option_container">
+                    <input class="radio_option" type="radio" name="question_option" id="question_option_<%= question_index %>_<%= question_option_index %>" value="<%= question_option %>">
+                    <label class="question_option_label" for="question_option_<%= question_index %>_<%= question_option_index %>">
+                        <span class="question_option_number"><%= question_option_index + 1 %></span>
+                        <span class="question_option_text"><%= question_option %></span>
+                    </label>
+                </div>
+                <% end %>
+            <% end %>
+            <% if question["question_type"] == "1" || question["question_type"] == "2" %>
+                <div>
+                    <input class="question_answer_text" type="text" placeholder="Type your answer here...">
+                </div>
+            <% end %>
+                <button type="button" class="preview_next_btn" disabled="disabled">Next</button>
+            </div>
+            <div class="preview_footer">
+                <p>Question <%= question_index + 1 %> of <%= questions.length %></p>
+            </div>
+        </div>
+        <div class="progress progress_bar_container hidden">
+            <div class="progress-bar progress_bar" role="progressbar" style="width: 50%;"></div>
+        </div>
+        <% end %>
+    </div>
+</div>

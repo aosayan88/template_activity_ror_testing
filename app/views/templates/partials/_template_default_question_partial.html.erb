@@ -1,0 +1,40 @@
+<div class="hidden">
+    <div id="" class="default_question">
+        <div class="grip_icon"></div>
+        <div class="question_header">
+            <select class="template_question_type">
+                <option value="0">Multiple Choice</option>
+                <option value="1">Short Answer</option>
+                <option value="2">Paragraph</option>
+            </select>
+            <span class="question_type_tooltip_icon" data-toggle="tooltip" data-placement="right" data-original-title="Have your candidates choose an answer from a list of options"></span>
+            <div class="question_header_actions">
+                <button type="button" class="duplicate_btn_icon"></button>
+                <button type="button" class="delete_btn_icon" data-toggle="modal" data-target="#delete_question_modal"></button>
+            </div>
+        </div>
+        <div class="question_title">
+            <input class="question_title_field" name="question[][question_title]" type="text" value="Untitled Question">
+            <button type="button" class="question_image"></button>
+        </div>
+        <div class="question_option">
+            <div class="multiple_choice">
+                <div class="question_option_item hidden">
+                    <div class="option_cirle"></div>
+                    <input class="question_option_field" name="question[*][question_options][]" type="text">
+                    <button type="button" class="question_option_delete_btn"></button>
+                </div>
+                <div class="question_option_action">
+                    <div class="option_cirle"></div>
+                    <button type="button" class="add_question_option"><span>Add Option</span> or press Enter or Tab key</button>
+                </div>
+            </div>
+            <div class="short_answer hidden">
+                <input type="text" class="short_answer_option" placeholder="Short answer text">
+            </div>
+            <div class="paragraph hidden">
+                <input type="text" class="long_answer_option" placeholder="Long answer text">
+            </div>
+        </div>
+    </div>
+</div>
