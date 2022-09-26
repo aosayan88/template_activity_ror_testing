@@ -50,10 +50,13 @@ class TemplatesController < ApplicationController
         response = { :status => false, :redirect => false }
 
         $questions.each do | question |
-            if question['question_id'] == params[:question_id].to_i
+            if question['question_id'] == params[:question_id]
                 $questions.delete(question) 
             end
         end
+
+        puts "-------------------------"
+        puts $questions
 
         response[:status] = true
         response[:question_id] = params[:question_id]

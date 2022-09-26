@@ -27,8 +27,8 @@ describe 'Templates Process' do
 
     it 'Add Question Template' do
         @driver.find_element(:css, '.add_question_btn').click
-        $expected_element = @driver.find_elements(:css, ".template_question")
-        expect($expected_element.length).to be > 2
+        @expected_element = @driver.find_elements(:css, ".template_question")
+        expect(@expected_element.length).to be > 2
     end
 
     it 'Duplicate Question Template' do
@@ -39,15 +39,35 @@ describe 'Templates Process' do
         @driver.find_element(:css, '.save_btn').click
         @driver.find_element(:css, '#question_id_1 .duplicate_btn_icon').click
         @driver.execute_script("window.scrollTo(0,0)")
-        $expected_element = @driver.find_elements(:css, ".template_question")
-        expect($expected_element.length).to be > 2
+        @expected_element = @driver.find_elements(:css, ".template_question")
+        expect(@expected_element.length).to be > 2
     end
 
     it 'Delete Question Template' do
-        @driver.find_element(:css, '#question_id_3 .delete_btn_icon').click
+        @driver.find_element(:css, '#question_id_2 .delete_btn_icon').click
         Selenium::WebDriver::Wait.new(timeout: 10).until { @driver.find_element(:css, '.delete_modal').displayed? }
+        Selenium::WebDriver::Wait.new(timeout: 10).until { @driver.find_element(:css, '.delete_modal_delete_btn').displayed? }
         @driver.find_element(:css, '.delete_modal_delete_btn').click
-        $expected_element = @driver.find_elements(:css, ".template_question")
-        expect($expected_element.length).to be < 5
+        Selenium::WebDriver::Wait.new(timeout: 10).until do
+            begin
+              !@driver.find_element(:css, '#question_id_2')
+            rescue Selenium::WebDriver::Error::NoSuchElementError
+              true
+            end
+        end
     end
+
+    it 'Template Preview Title and Description should be same in templates title/description' do
+        # Locate the delete modal then closed it (from previouse it)
+        Selenium::WebDriver::Wait.new(timeout: 10).until { @driver.find_element(:css, '.delete_modal_delete_btn').displayed? }
+        @driver.find_element(:css, '.delete_modal_delete_btn').click
+
+        @driver.find_element(:id, 'template_description').click
+        @driver.find_element(:id, 'template_description').send_keys('template description')
+        @driver.find_element(:css, '.preview_btn').click
+        Selenium::WebDriver::Wait.new(timeout: 10).until { @driver.find_element(:css, '.preview_modal').displayed? }
+        expect(@driver.find_element(:css, '.template_header_title').text).to eq('Untitled Template Testing Template')
+        expect(@driver.find_element(:css, '.template_header_title').text).to eq('Untitled Template Testing Template')
+        expect(@driver.find_element(:css, '.carousel_template_description').text).to eq('template description')
+    end 
 end

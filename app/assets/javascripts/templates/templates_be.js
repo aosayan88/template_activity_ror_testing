@@ -31,7 +31,8 @@ function submitDeleteQuestionForm(){
             // $(".template_questions").html(json_data.html);
 
             /** Todo: Find question with json_data.question_id and remove it from view */
-            $(`#question_id_${json_data.question_id}`).remove();
+            //$(`#question_id_${json_data.question_id}`).remove();
+            $(".template_questions").html(json_data.html);
         }
     }, "json");
 
