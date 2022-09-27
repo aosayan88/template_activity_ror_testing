@@ -3,12 +3,12 @@ require 'selenium-webdriver'
 require 'json'
 
 # DOCU: Testcases for activity on Ruby On Rails <br>
-# Last updated at: Sep 23, 2022
+# Last updated at: Sep 26, 2022
 # @author Alfie
 # Run using: bundle exec rspec ./test/spec/templates_process.test.rb
 describe 'Templates Process' do
     before(:all) do
-        options = Selenium::WebDriver::Chrome::Options.new(args: [ "headless", "disable-gpu", "blink-settings=imagesEnabled=false", "--window-size=1920,1080"])
+        options = Selenium::WebDriver::Chrome::Options.new(args: [ "disable-gpu", "blink-settings=imagesEnabled=false", "--window-size=1920,1080"])
         @driver = Selenium::WebDriver.for :chrome, options: options
         @driver.manage.window.maximize
         @driver.get('http://localhost:3000/')
@@ -61,13 +61,41 @@ describe 'Templates Process' do
         # Locate the delete modal then closed it (from previouse it)
         Selenium::WebDriver::Wait.new(timeout: 10).until { @driver.find_element(:css, '.delete_modal_delete_btn').displayed? }
         @driver.find_element(:css, '.delete_modal_delete_btn').click
-
         @driver.find_element(:id, 'template_description').click
         @driver.find_element(:id, 'template_description').send_keys('template description')
         @driver.find_element(:css, '.preview_btn').click
         Selenium::WebDriver::Wait.new(timeout: 10).until { @driver.find_element(:css, '.preview_modal').displayed? }
         expect(@driver.find_element(:css, '.template_header_title').text).to eq('Untitled Template Testing Template')
-        expect(@driver.find_element(:css, '.template_header_title').text).to eq('Untitled Template Testing Template')
+        expect(@driver.find_element(:css, '.carousel_template_title').text).to eq('Untitled Template Testing Template')
         expect(@driver.find_element(:css, '.carousel_template_description').text).to eq('template description')
-    end 
+    end
+
+    it 'Left navigate button should be disabled in first carousel page' do
+        Selenium::WebDriver::Wait.new(timeout: 10).until { @driver.find_element(:css, '.prev_btn_icon').displayed? }
+        # Check if button is disabled
+        !@driver.find_element(:css, '.prev_btn_icon').enabled?
+    end
+
+    it 'Next button should be enable when clicking option of multiple choice question' do
+        @driver.find_element(:css, '.next_btn').click
+        Selenium::WebDriver::Wait.new(timeout: 10).until { @driver.find_element(:css, '.question_option_label').displayed? }
+        @driver.find_element(:css, '.preview_question_option_container:nth-child(1) > .question_option_label').click
+        Selenium::WebDriver::Wait.new(timeout: 10).until { @driver.find_element(:css, '.preview_next_btn').enabled? }
+    end
+
+    it 'Next button should be enable when input for short/paragraph answer question has value' do
+        @driver.find_element(:css, '.next_btn').click
+        Selenium::WebDriver::Wait.new(timeout: 10).until { @driver.find_element(:css, '.question_answer_text').displayed? }
+        @driver.find_element(:css, '.question_answer_text').click
+        @driver.find_element(:css, '.question_answer_text').send_keys('Test')
+        Selenium::WebDriver::Wait.new(timeout: 10).until { @driver.find_element(:css, '.preview_next_btn').enabled? }
+    end
+
+    it 'Right navigate button should be disabled when reaching last carousel' do
+        @driver.find_element(:css, '.next_btn').click
+        Selenium::WebDriver::Wait.new(timeout: 30)
+        @driver.find_element(:css, '.next_btn').click
+        Selenium::WebDriver::Wait.new(timeout: 20).until { @driver.find_element(:css, '.preview_footer').displayed? }
+        !@driver.find_element(:css, '.next_btn').enabled?
+    end
 end
