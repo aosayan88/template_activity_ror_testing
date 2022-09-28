@@ -8,7 +8,7 @@ require 'json'
 # Run using: bundle exec rspec ./test/spec/templates_process.test.rb
 describe 'Templates Process' do
     before(:all) do
-        options = Selenium::WebDriver::Chrome::Options.new(args: [ "disable-gpu", "blink-settings=imagesEnabled=false", "--window-size=1920,1080"])
+        options = Selenium::WebDriver::Chrome::Options.new(args: [ "headless", "disable-gpu", "blink-settings=imagesEnabled=false", "--window-size=1920,1080"])
         @driver = Selenium::WebDriver.for :chrome, options: options
         @driver.manage.window.maximize
         @driver.get('http://localhost:3000/')
@@ -83,6 +83,12 @@ describe 'Templates Process' do
         Selenium::WebDriver::Wait.new(timeout: 10).until { @driver.find_element(:css, '.preview_next_btn').enabled? }
     end
 
+    it 'Question title should be same in the template preview question titles' do
+        question_id_1 = @driver.find_element(:id, 'question_id_1')
+        question_title_value = question_id_1.find_element(:css, '.question_title_field').attribute('value')
+        expect(@driver.find_element(:css, '#carousel_item_id_1 .preview_question_title').text).to eq(question_title_value)
+    end
+
     it 'Next button should be enable when input for short/paragraph answer question has value' do
         @driver.find_element(:css, '.next_btn').click
         Selenium::WebDriver::Wait.new(timeout: 10).until { @driver.find_element(:css, '.question_answer_text').displayed? }
@@ -93,9 +99,27 @@ describe 'Templates Process' do
 
     it 'Right navigate button should be disabled when reaching last carousel' do
         @driver.find_element(:css, '.next_btn').click
-        Selenium::WebDriver::Wait.new(timeout: 30)
+        sleep 1
         @driver.find_element(:css, '.next_btn').click
-        Selenium::WebDriver::Wait.new(timeout: 20).until { @driver.find_element(:css, '.preview_footer').displayed? }
         !@driver.find_element(:css, '.next_btn').enabled?
     end
+
+    it 'Number of template questions should be same in the template preview' do
+        template_question = @driver.find_elements(:css, ".template_question")
+        preview_question = @driver.find_elements(:css, ".preview_question_container")
+        expect(template_question.length).to eq(preview_question)
+    end
+
+    it 'Close preview modal' do
+        @driver.find_element(:css, '.preview_close_btn').click
+        #Selenium::WebDriver::Wait.new(timeout: 10).until { @driver.find_element(:css, '.save_btn').displayed? }
+        Selenium::WebDriver::Wait.new(timeout: 10).until do
+            begin
+              !@driver.find_element(:css, '.preview_modal')
+            rescue Selenium::WebDriver::Error::NoSuchElementError
+              true
+            end
+        end
+    end
+    
 end

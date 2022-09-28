@@ -55,9 +55,6 @@ class TemplatesController < ApplicationController
             end
         end
 
-        puts "-------------------------"
-        puts $questions
-
         response[:status] = true
         response[:question_id] = params[:question_id]
         response[:html] 	= render_to_string  :partial => "templates/partials/template_question_partial", :locals => { :questions => $questions }
@@ -75,8 +72,6 @@ class TemplatesController < ApplicationController
             "question_type" => "0",
             "question_options" => []
         }
-
-        puts $questions
 
         $questions.append(@new_question)
         response[:status] = true
@@ -98,9 +93,6 @@ class TemplatesController < ApplicationController
             "question_type" => @question_to_be_duplicated[0]["question_type"],
             "question_options" => @question_to_be_duplicated[0]["question_options"]
         }
-
-        puts "-------------------------------------------"
-        puts @question_to_be_duplicated
 
         $questions.append(@duplicated_question)
         response[:status]   = true
